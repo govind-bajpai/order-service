@@ -22,7 +22,7 @@ public class OrderHandler {
     Random random = new Random();
     
     //   @Value("${juno.api.auth.token:8e8b0816-4c73-4f08-8f7d-022dcd186a91}")
-    @Value("${min.tat.value:10000}")
+    @Value("${min.tat.value:1000*60*40}")
     private Long minTat;
     
     
@@ -42,7 +42,7 @@ public class OrderHandler {
     public Order createOrder(Order order) {
         order.setStatus(Status.NEW);
         order.setCreatedAt(new Date());
-        order.setTatDelivery(minTat + random.nextInt(2));
+        order.setTatDelivery(minTat + random.nextInt(100000));
         return repository.saveOrUpdate(order);
     }
     
